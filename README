@@ -1,0 +1,12 @@
+The actual puppet-moosefs module is in modules/moosefs
+
+
+The other part of this repository includes a Vagrant setup with a definition 3 boxen with different functionalities to demonstrate a MooseFS setup using the Puppet module.
+
+
+Real documentation might happen whenever I get some sleep 
+
+
+
+
+

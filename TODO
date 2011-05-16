@@ -1,0 +1,39 @@
+
+
+
+
+Fix ordering 
+
+Fix iptables 
+
+
+
+[moose2] Provisioning enabled with puppet...
+[moose2] Running provisioner: Vagrant::Provisioners::Puppet...
+[moose2] Running Puppet with site.pp...
+[moose2] err: /Stage[main]/Moosefs::Server/Package[mfs]/ensure: change from absent to present failed: Could not find package mfs
+[moose2] 
+[moose2] err: /Stage[main]/Moosefs::Client/Package[mfs-client]/ensure: change from absent to present failed: Could not find package mfs-client
+[moose2] notice: /Stage[main]/Repo/Yumrepo[rpmforge]/descr: descr changed '' to 'RPMforge.net - dag'
+notice: /Stage[main]/Repo/Yumrepo[rpmforge]/mirrorlist: mirrorlist changed '' to 'http://apt.sw.be/redhat/el5/en/mirrors-rpmforge'
+notice: /Stage[main]/Repo/Yumrepo[rpmforge]/enabled: enabled changed '' to '1'
+notice: /Stage[main]/Repo/Yumrepo[rpmforge]/gpgcheck: gpgcheck changed '' to '0'
+notice: /Stage[main]/Repo/Yumrepo[rpmforge]/gpgkey: gpgkey changed '' to 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dag'
+notice: /Stage[main]/Repo/Yumrepo[rpmforge]/priority: priority changed '' to '1'
+[moose2] 'unknown': I need something more specific.
+
+
+Yet : 
+
+
+class moose {
+        include repo
+        include moosefs
+        Class['repo'] -> Class['moosefs']
+
+
+}
+
+
+
+

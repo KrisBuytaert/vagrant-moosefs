@@ -21,13 +21,18 @@ yumrepo {
 class mine {
 
 
-	
+	package {
+	"iptables": ensure => absent;
+	"system-config-securitylevel-tui": ensure => absent;
+	"iptables-ipv6": ensure => absent;
+	"iptstate": ensure => absent;
+	}
 
 
-	service { "iptables":
-                ensure => "stopped",
-                enable => "false";
-                }
+#	service { "iptables":
+#                ensure => "stopped",
+#                enable => "false";
+#                }
 
 
 	include repo

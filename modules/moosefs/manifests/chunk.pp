@@ -44,7 +44,7 @@ class moosefs::chunk  {
 		require => [Class['moosefs::server'],File["/etc/${sub}mfschunkserver.cfg","/etc/${sub}mfshdd.cfg"]],
    		name => $operatingsystem ? {
                         /Debian|Ubuntu/ => 'mfs-chunkserver',
-                        /Centos|Fedora/ => 'mfschunkserver',
+                        /CentOS|Fedora/ => 'mfschunkserver',
                         },
 		hasstatus => false,
 		pattern => "mfschunkserver",

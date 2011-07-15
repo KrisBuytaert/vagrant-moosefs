@@ -40,19 +40,16 @@ class moosefs::metalogger {
 	file {
 	"/etc/${sub}mfsmetalogger.cfg":
 		content => template("moosefs/mfsmetalogger.cfg.erb");
-
 	}
 	service {"mfsmetalogger":
-		require => [Class['moosefs::server'],File['/etc/${sub}mfsmetalogger.cfg']],
+		require => [Class['moosefs::server'],File["/etc/${sub}mfsmetalogger.cfg"]],
 		name => $operatingsystem ? {
                         /Debian|Ubuntu/ => 'mfs-metalogger',
-                        /Centos|Fedora/ => 'mfsmetalogger',
+                        /CentOS|Fedora/ => 'mfsmetalogger',
                         },
                 hasstatus => false,
                 pattern => "mfsmetalogger",
-
 		ensure => running;
-		
 	}
 
 }

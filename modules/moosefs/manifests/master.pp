@@ -40,25 +40,25 @@ class moosefs::mfsmaster {
 	"/etc/${sub}mfsexports.cfg":
 		content => template("moosefs/mfsexports.cfg.erb");
 	"/var/mfs/metadata.mfs":
+ 		replace => false,
+		# Fraq apparently this files DOES get rewritten :(  look at file properties etc
 		source => "puppet:///modules/moosefs/metadata.mfs.empty",
 		name => $operatingsystem ? {
  			/Debian|Ubuntu/ => "/var/lib/mfs/metadata.mfs",
-                        /Centos|Fedora/ => "/var/mfs/metadata.mfs",
+                        /CentOS|Fedora/ => "/var/mfs/metadata.mfs",
                         },
 
 
- 		replace => false;
 
 	}
 	service {"mfsmaster":
 		require => [Class['moosefs::server'],File["/etc/${sub}mfsmaster.cfg"]],
  		name => $operatingsystem ? {
 			/Debian|Ubuntu/ => 'mfs-master',
-			/Centos|Fedora/ => 'mfsmaster',
+			/CentOS|Fedora/ => 'mfsmaster',
 			},
            	hasstatus => false,
                 pattern => "mfsmaster",
-
 		ensure => running;
 		
 	}
